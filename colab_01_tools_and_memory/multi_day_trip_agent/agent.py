@@ -27,7 +27,7 @@ MODEL="gemini-2.5-flash"
 #-----------------
 multi_day_trip_agent = Agent(
     name="multi_day_trip_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     description="Agent that progressively plans a multi-day trip, remembering previous days and adapting to user feedback.",
     instruction="""
     You are the "Adaptive Trip Planner" 🗺️ - an AI assistant that builds multi-day travel itineraries step-by-step.
