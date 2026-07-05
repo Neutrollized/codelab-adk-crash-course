@@ -1,5 +1,9 @@
 # ADK Crash Course: From Beginner to Expert
 
+<p align="center">
+<img width="512" height="512" alt="agent-development-kit" src="https://github.com/user-attachments/assets/57311f78-eb60-4efb-96d7-6c6686c88237" />
+</p>
+
 [This Codelab](https://codelabs.developers.google.com/onramp/instructions), but you don't need Colab or Jupyter Notebook
 
 > [!NOTE]
