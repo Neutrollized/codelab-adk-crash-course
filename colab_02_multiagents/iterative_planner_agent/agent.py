@@ -21,6 +21,9 @@ from google.genai import types
 from google.genai.types import Content, Part
 
 
+MODEL="gemini-2.5-flash"
+
+
 #--------------------------------------------------
 # Suppress logs/warnings
 #--------------------------------------------------
@@ -50,7 +53,7 @@ def exit_loop(tool_context: ToolContext):
 # Agent 1: Proposes an initial plan
 planner_agent = Agent(
     name="planner_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="You are a trip planner. Based on the user's request, propose a single activity and a single restaurant. Output only the names, like: 'Activity: Exploratorium, Restaurant: La Mar'.",
     output_key="current_plan"
@@ -59,7 +62,7 @@ planner_agent = Agent(
 # Agent 2 (in loop): Critiques the plan
 critic_agent = Agent(
     name="critic_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction=f"""You are a logistics expert. Your job is to critique a travel plan. The user has a strict constraint: total travel time must be short.
     Current Plan: {{current_plan}}
@@ -72,7 +75,7 @@ critic_agent = Agent(
 # Agent 3 (in loop): Refines the plan or exits
 refiner_agent = Agent(
     name="refiner_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool(bypass_multi_tools_limit=True), exit_loop],
     instruction=f"""You are a trip planner, refining a plan based on criticism.
     Original Request: {{session.query}}

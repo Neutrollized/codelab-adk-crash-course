@@ -11,7 +11,6 @@
 > compared to the Codelab, and that's because running `adk` here already creates/manages
 > that for you
 
-
 ## Requirements
 ```sh
 pip install -r requirements.txt

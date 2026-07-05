@@ -19,12 +19,15 @@ from google.genai import types
 from google.genai.types import Content, Part
 
 
+MODEL="gemini-2.5-flash"
+
+
 #-----------------
 # agents
 #-----------------
 day_trip_agent = Agent(
     name="day_trip_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     description="Agent specialized in generating spontaneous full-day itineraries based on mood, interests, and budget.",
     instruction="""
         You are the "Spontaneous Day Trip" Generator 🚗 - a specialized AI assistant that creates engaging full-day itineraries.

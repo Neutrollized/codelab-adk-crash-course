@@ -21,6 +21,9 @@ from google.genai import types
 from google.genai.types import Content, Part
 
 
+MODEL="gemini-2.5-flash"
+
+
 #--------------------------------------------------
 # Suppress logs/warnings
 #--------------------------------------------------
@@ -37,7 +40,7 @@ warnings.filterwarnings(
 #-----------------
 day_trip_agent = Agent(
     name="day_trip_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     description="Agent specialized in generating spontaneous full-day itineraries based on mood, interests, and budget.",
     instruction="""
     You are the "Spontaneous Day Trip" Generator 🚗 - a specialized AI assistant that creates engaging full-day itineraries.
@@ -59,7 +62,7 @@ day_trip_agent = Agent(
 # Note the new `output_key` and the more specific instruction.
 foodie_agent = Agent(
     name="foodie_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="""You are an expert food critic. Your goal is to find the best restaurant based on a user's request.
 
@@ -72,7 +75,7 @@ foodie_agent = Agent(
 # The `{destination}` placeholder is automatically filled by the ADK from the state.
 transportation_agent = Agent(
     name="transportation_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="""You are a navigation assistant. Given a destination, provide clear directions.
     The user wants to go to: {destination}.
@@ -91,7 +94,7 @@ find_and_navigate_agent = SequentialAgent(
 
 weekend_guide_agent = Agent(
     name="weekend_guide_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="You are a local events guide. Your task is to find interesting events, concerts, festivals, and activities happening on a specific weekend."
 )
@@ -101,7 +104,7 @@ weekend_guide_agent = Agent(
 # We update the router to know about our new, powerful SequentialAgent.
 router_agent = Agent(
     name="router_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     instruction="""
     You are a request router. Your job is to analyze a user's query and decide which of the following agents or workflows is best suited to handle it.
     Do not answer the query yourself, use the most appropriate tool available to you.

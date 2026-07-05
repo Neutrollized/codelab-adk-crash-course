@@ -21,6 +21,9 @@ from google.genai import types
 from google.genai.types import Content, Part
 
 
+MODEL="gemini-2.5-flash"
+
+
 #--------------------------------------------------
 # Suppress logs/warnings
 #--------------------------------------------------
@@ -49,7 +52,7 @@ def exit_loop(tool_context: ToolContext):
 #-----------------
 day_trip_agent = Agent(
     name="day_trip_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     description="Agent specialized in generating spontaneous full-day itineraries based on mood, interests, and budget.",
     instruction="""
     You are the "Spontaneous Day Trip" Generator 🚗 - a specialized AI assistant that creates engaging full-day itineraries.
@@ -71,7 +74,7 @@ day_trip_agent = Agent(
 # Note the new `output_key` and the more specific instruction.
 foodie_agent = Agent(
     name="foodie_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="""You are an expert food critic. Your goal is to find the best restaurant based on a user's request.
 
@@ -84,7 +87,7 @@ foodie_agent = Agent(
 # The `{destination}` placeholder is automatically filled by the ADK from the state.
 transportation_agent = Agent(
     name="transportation_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="""You are a navigation assistant. Given a destination, provide clear directions.
     The user wants to go to: {destination}.
@@ -105,7 +108,7 @@ find_and_navigate_agent = SequentialAgent(
 # --- iteratgive planner agent ---
 planner_agent = Agent(
     name="planner_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="You are a trip planner. Based on the user's request, propose a single activity and a single restaurant. Output only the names, like: 'Activity: Exploratorium, Restaurant: La Mar'.",
     output_key="current_plan"
@@ -113,7 +116,7 @@ planner_agent = Agent(
 
 critic_agent = Agent(
     name="critic_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction=f"""You are a logistics expert. Your job is to critique a travel plan. The user has a strict constraint: total travel time must be short.
     Current Plan: {{current_plan}}
@@ -125,7 +128,7 @@ critic_agent = Agent(
 
 refiner_agent = Agent(
     name="refiner_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool(bypass_multi_tools_limit=True), exit_loop],
     instruction=f"""You are a trip planner, refining a plan based on criticism.
     Original Request: {{session.query}}
@@ -151,7 +154,7 @@ iterative_planner_agent = SequentialAgent(
 # --- parallel planner agent ---
 museum_finder_agent = Agent(
     name="museum_finder_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="You are a museum expert. Find the best museum based on the user's query. Output only the museum's name.",
     output_key="museum_result"
@@ -160,7 +163,7 @@ museum_finder_agent = Agent(
 # Specialist Agent 2
 concert_finder_agent = Agent(
     name="concert_finder_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="You are an events guide. Find a concert based on the user's query. Output only the concert name and artist.",
     output_key="concert_result"
@@ -171,7 +174,7 @@ concert_finder_agent = Agent(
 # restaurant_finder_agent = foodie_agent.copy(update={"output_key": "restaurant_result"})
 restaurant_finder_agent = Agent(
     name="restaurant_finder_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     tools=[GoogleSearchTool()],
     instruction="""You are an expert food critic. Your goal is to find the best restaurant based on a user's request.
 
@@ -191,7 +194,7 @@ parallel_research_agent = ParallelAgent(
 # Agent to synthesize the parallel results
 synthesis_agent = Agent(
     name="synthesis_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     instruction="""You are a helpful assistant. Combine the following research results into a clear, bulleted list for the user.
     - Museum: {museum_result}
     - Concert: {concert_result}
@@ -210,7 +213,7 @@ parallel_planner_agent = SequentialAgent(
 # --- The Brain of the Operation: The Router Agent ---
 router_agent = Agent(
     name="router_agent",
-    model="gemini-3.5-flash",
+    model=MODEL,
     instruction="""
     You are a request router. Your job is to analyze a user's query and decide which of the following agents or workflows is best suited to handle it.
     Do not answer the query yourself, use the most appropriate tool available to you.
