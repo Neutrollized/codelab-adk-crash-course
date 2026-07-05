@@ -1,0 +1,10 @@
+.python-version
+**/__pycache__
+**/.pytest_cache
+**/.env
+
+# adk stuff
+**/.adk
+
+# misc
+**/.DS_Store
