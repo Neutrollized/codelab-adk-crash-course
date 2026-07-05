@@ -13,7 +13,7 @@
 pip install -r requirements.txt
 ```
 
-- create `.env` file with the following ENV VARs:
+- create `.env` file with the following ENV VARs in the root of each agent:
 ```
 GOOGLE_API_KEY = "Thequickbrownfoxjumpsoverthelazydog!"
 GOOGLE_GENAI_USE_VERTEXAI = "False"
