@@ -35,6 +35,18 @@ GOOGLE_CLOUD_LOCATION=global
 > [!WARNING]
 > Don't just take my work for it! Check it yourself to make sure you're not committing anything sensitive!
 
+### Running an Agent
+To start an agent, run:
+```sh 
+adk run [AGENT_FOLDER_NAME]
+
+or 
+
+adk web 
+```
+
+For example, if you're in the *colab_01_tools_and_memory* directory, you can run `adk run day_trip_agent` to get a CLI-based chat with the agent. If you ran `adk web` instead, you can go to [http://localhost:8000](http://localhost:8000) in your web browser to access the ADK's web UI and from the dropdown, you can select the agent you wish to interact with.
+
 
 ## Codelab
 > [!IMPORTANT]
