@@ -1,3 +1,7 @@
 google-adk
 google-adk[extensions]
 google-genai
+
+# for local sqlite3 db sessions
+sqlalchemy
+aiosqlite

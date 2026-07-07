@@ -5,6 +5,7 @@
 
 # adk stuff
 **/.adk
+**/*.db
 
 # misc
 **/.DS_Store
