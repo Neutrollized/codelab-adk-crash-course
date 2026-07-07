@@ -66,7 +66,6 @@ runner = Runner(
     session_service=session_service,
 )
 
-
 async def main():
     # create_session is async and persists a row in your DB
     session = await session_service.create_session(
@@ -74,16 +73,6 @@ async def main():
         user_id=USER_ID,
         # session_id=... optional, will be generated if omitted
     )
-
-    #content = Content(role="user", parts=[Part(text="I'm feeling artsy and want a cheap day out in Calgary")])
-
-#    async for event in runner.run_async(
- #       user_id=USER_ID,
- #       session_id=session.id,
- #       new_message=content,
- #   ):
- #       if event.is_final_response():
- #           print(event.content.parts[0].text)
 
 
 if __name__ == "__main__":
