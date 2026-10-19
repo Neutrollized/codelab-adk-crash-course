@@ -19,7 +19,7 @@ from google.genai import types
 from google.genai.types import Content, Part
 
 
-MODEL="gemini-2.5-flash"
+MODEL="gemini-3.8-flash"
 
 
 #-----------------

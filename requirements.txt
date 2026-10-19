@@ -1,6 +1,8 @@
-google-adk
-google-adk[extensions]
-google-genai
+google-adk == 2.12.0
+google-adk[extensions] == 2.12.0
+google-cloud-aiplatform == 1.163.0
+google-genai == 2.30.1
+mcp == 2.3.0
 
 # for local sqlite3 db sessions
 sqlalchemy
